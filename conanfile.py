@@ -33,6 +33,7 @@ class OpenSSLConan(ConanFile):
     def package(self):
         self.copy('*.h', src='%s/include' % self.source_dir, dst='include')
         self.copy('*.a', src=self.source_dir,                dst='lib')
+        self.copy('openssl', src='%s/apps' % self.source_dir, dst='bin')
 
     def package_info(self):
         self.cpp_info.libs = ['crypto', 'ssl']
