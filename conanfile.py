@@ -29,6 +29,7 @@ class OpenSSLConan(ConanFile):
                 flags += ' -mmacosx-version-min=10.10'
                 target = 'darwin64-x86_64-cc'
             elif platform.system() == 'Linux':
+                flags += ' -fPIC'
                 target = 'linux-x86_64'
 
             env_vars = {
