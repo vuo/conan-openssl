@@ -35,11 +35,9 @@ class OpenSSLConan(ConanFile):
             env_vars = {
                 'CC'     : self.deps_cpp_info['llvm'].rootpath + '/bin/clang',
                 'CXX'    : self.deps_cpp_info['llvm'].rootpath + '/bin/clang++',
-                'CFLAGS' : flags,
-                'LDFLAGS': flags,
             }
             with tools.environment_append(env_vars):
-                self.run('./Configure --openssldir=/usr/local/etc/openssl no-zlib no-shared no-hw no-asm ' + target)
+                self.run('./Configure --openssldir=/usr/local/etc/openssl no-zlib no-shared no-hw no-asm ' + target + ' ' + flags)
                 self.run('make -j9 --quiet')
 
     def package(self):
