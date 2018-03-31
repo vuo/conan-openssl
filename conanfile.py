@@ -19,6 +19,8 @@ class OpenSSLConan(ConanFile):
         tools.get('https://www.openssl.org/source/openssl-%s.tar.gz' % self.source_version,
                   sha256='370babb75f278c39e0c50e8c4e7493bc0f18db6867478341a832a982fd15a8fe')
 
+        self.run('mv %s/LICENSE %s/%s.txt' % (self.source_dir, self.source_dir, self.name))
+
     def build(self):
         with tools.chdir(self.source_dir):
             flags = '-O0'
@@ -43,6 +45,8 @@ class OpenSSLConan(ConanFile):
         self.copy('*.h', src='%s/include' % self.source_dir, dst='include')
         self.copy('*.a', src=self.source_dir,                dst='lib')
         self.copy('openssl', src='%s/apps' % self.source_dir, dst='bin')
+
+        self.copy('%s.txt' % self.name, src=self.source_dir, dst='license')
 
     def package_info(self):
         self.cpp_info.libs = ['crypto', 'ssl']
