@@ -1,4 +1,5 @@
 from conans import ConanFile, tools
+import platform
 
 class OpenSSLConan(ConanFile):
     name = 'openssl'
@@ -20,14 +21,22 @@ class OpenSSLConan(ConanFile):
 
     def build(self):
         with tools.chdir(self.source_dir):
+            flags = '-O0'
+
+            if platform.system() == 'Darwin':
+                flags += ' -mmacosx-version-min=10.10'
+                target = 'darwin64-x86_64-cc'
+            elif platform.system() == 'Linux':
+                target = 'linux-x86_64'
+
             env_vars = {
                 'CC'     : self.deps_cpp_info['llvm'].rootpath + '/bin/clang',
                 'CXX'    : self.deps_cpp_info['llvm'].rootpath + '/bin/clang++',
-                'CFLAGS' : '-O0 -mmacosx-version-min=10.10',
-                'LDFLAGS': '-mmacosx-version-min=10.10',
+                'CFLAGS' : flags,
+                'LDFLAGS': flags,
             }
             with tools.environment_append(env_vars):
-                self.run('./Configure --openssldir=/usr/local/etc/openssl no-zlib no-shared no-hw no-asm darwin64-x86_64-cc')
+                self.run('./Configure --openssldir=/usr/local/etc/openssl no-zlib no-shared no-hw no-asm ' + target)
                 self.run('make -j9 --quiet')
 
     def package(self):

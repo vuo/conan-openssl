@@ -12,4 +12,4 @@ class OpenSSLTestConan(ConanFile):
         self.copy('*', src='lib', dst='lib')
 
     def test(self):
-        self.run('qbs run')
+        self.run('qbs run -f "%s"' % self.source_folder)
