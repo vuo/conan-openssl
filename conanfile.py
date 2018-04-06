@@ -4,8 +4,8 @@ import platform
 class OpenSSLConan(ConanFile):
     name = 'openssl'
 
-    source_version = '1.0.2n'
-    package_version = '2'
+    source_version = '1.0.2o'
+    package_version = '1'
     version = '%s-%s' % (source_version, package_version)
 
     build_requires = 'llvm/3.3-5@vuo/stable'
@@ -17,7 +17,7 @@ class OpenSSLConan(ConanFile):
 
     def source(self):
         tools.get('https://www.openssl.org/source/openssl-%s.tar.gz' % self.source_version,
-                  sha256='370babb75f278c39e0c50e8c4e7493bc0f18db6867478341a832a982fd15a8fe')
+                  sha256='ec3f5c9714ba0fd45cb4e087301eb1336c317e0d20b575a125050470e8089e4d')
 
         self.run('mv %s/LICENSE %s/%s.txt' % (self.source_dir, self.source_dir, self.name))
 
