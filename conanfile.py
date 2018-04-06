@@ -8,7 +8,7 @@ class OpenSSLConan(ConanFile):
     package_version = '2'
     version = '%s-%s' % (source_version, package_version)
 
-    requires = 'llvm/3.3-2@vuo/stable'
+    build_requires = 'llvm/3.3-5@vuo/stable'
     settings = 'os', 'compiler', 'build_type', 'arch'
     url = 'https://www.openssl.org/'
     license = 'https://www.openssl.org/source/license.html'
