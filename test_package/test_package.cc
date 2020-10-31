@@ -3,6 +3,6 @@
 
 int main()
 {
-	printf("Successfully initialized OpenSSL %s\n", SSLeay_version(SSLEAY_VERSION));
+	printf("Successfully initialized OpenSSL %s\n", OpenSSL_version(OPENSSL_VERSION));
 	return 0;
 }
