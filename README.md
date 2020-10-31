@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/vuo/conan-openssl.svg?branch=master)](https://travis-ci.org/vuo/conan-openssl)
+[ ![Download](https://api.bintray.com/packages/vuo/conan/openssl%3Avuo/images/download.svg) ](https://bintray.com/vuo/conan/openssl%3Avuo/_latestVersion)
